@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi wishlist</title><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light;--bg:#fff;--fg:#111;--mut:#6f6a64;--beige:#ede4d8;--off:#faf9f7;--gold:#a08461;--red:#c85a5a;--line:#d9cdbd;--ok:rgba(72,255,69,.5)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.4 Manrope,system-ui,sans-serif}
+main{max-width:1080px;margin:0 auto;padding:0 24px 56px}
+input,textarea,select,button{font:inherit;color:var(--fg)}
+input,textarea,select{width:100%;box-sizing:border-box;margin:5px 0;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}
+button{cursor:pointer;border:1px solid var(--gold);background:transparent;border-radius:999px;padding:10px 18px;box-shadow:none}
+button.pri{background:var(--fg);color:#fff;border-color:var(--fg)}
+.ic{border:0;background:none;padding:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;position:relative;border-radius:0}
+.hd{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 0 6px}
+.brand{font-size:20px;letter-spacing:.04em;text-transform:uppercase;font-weight:400;flex:none;margin:0}
+input.brand{border:0;background:none;padding:0;width:auto;min-width:10ch;field-sizing:content;outline:none;border-radius:0}
+nav{flex:1;display:flex;gap:28px;justify-content:center;overflow-x:auto;min-width:0}
+nav button{border:0;border-bottom:2px solid transparent;border-radius:0;padding:6px 0;font-weight:500;white-space:nowrap}
+nav button.on{border-color:var(--gold);font-weight:700}
+.icons{display:flex;gap:14px;align-items:center}
+.cnt{position:absolute;top:-4px;right:-6px;min-width:16px;height:16px;border-radius:8px;background:var(--beige);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center}
+@media(max-width:640px){nav{order:3;flex-basis:100%;justify-content:flex-start}main{padding:0 16px 40px}}
+
+h1{font-size:40px;line-height:1.1;margin:18px 0 10px;font-weight:700}
+.sub{margin:0 0 6px}
+textarea.in{border:0;padding:0;background:none;color:var(--mut);resize:none;margin:4px 0 0;outline:none;display:block;border-radius:0}
+textarea.in::placeholder,input.brand::placeholder{color:#b9b2a8}
+.intro{color:var(--mut);margin:0 0 8px}
+.tools{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0 22px}
+.price{display:flex;gap:8px;align-items:center;color:var(--mut);font-size:14px}.price input{width:86px;margin:0;padding:8px 12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row input{flex:1}
+.sm{font-size:13px;padding:6px 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:22px}
+.card{cursor:pointer;background:var(--beige);border-radius:22px;overflow:hidden}
+.tile{position:relative;aspect-ratio:1;background:var(--off);display:flex;align-items:center;justify-content:center}
+.tile img,.big img{width:100%;height:100%;object-fit:contain;padding:8%;box-sizing:border-box}
+.ph{color:#b9b2a8;font-size:13px}
+.tile.mine::after{content:"";position:absolute;inset:0;background:var(--ok)}
+.pill{position:absolute;top:12px;right:12px;z-index:2;font-size:12px;background:#fff;color:var(--mut);border:1px solid var(--gold);padding:3px 12px;border-radius:999px}
+.info{padding:14px 16px 16px}
+.cat{font-size:14px;color:var(--mut)}.nm{font-weight:600;font-size:17px;margin-top:2px}
+.bot{display:flex;justify-content:space-between;align-items:center;margin-top:4px;gap:6px}
+.pr{font-size:20px;font-weight:600}.card .pr{font-size:15px}
+.act{display:flex;gap:12px;align-items:center}.act button{border:0;padding:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:0}
+.ov{position:fixed;inset:0;background:#0006;display:flex;align-items:center;justify-content:center;z-index:5;box-sizing:border-box;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
+.sheet{background:#fff;width:100%;max-width:520px;max-height:100%;overflow:auto;border-radius:24px;padding:22px;box-sizing:border-box}
+.big{aspect-ratio:1.4;border-radius:18px;background:var(--off);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:12px}
+.lk{display:inline-block;margin:4px 6px 4px 0;padding:7px 14px;border-radius:999px;border:1px solid var(--gold);color:var(--fg);text-decoration:none;font-size:14px}
+.err{color:#c0392b;min-height:1.3em;text-align:center}
+.ok{color:var(--mut);border:1px solid var(--gold);display:inline-block;padding:4px 12px;border-radius:999px;font-size:14px;margin:8px 0}
+.hint{font-size:12px;color:var(--mut);margin:0 0 10px;padding-left:13px}.box{background:var(--beige);border-radius:18px;padding:14px 16px;margin:8px 0}
+.gb{display:block;width:100%;text-align:left;margin:8px 0;border-radius:14px}
+.btns{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.lrow{display:flex;gap:8px}.lrow .lt{flex:.7}.lrow .lu{flex:1}
+.login{max-width:440px;margin:56px auto 0;background:var(--beige);border-radius:24px;padding:28px}
+.login input{border:0}
+.up{font-size:28px;margin:0 0 16px;text-transform:uppercase;letter-spacing:.06em}
+</style></head><body><main id="app"></main>
+<script>
+const API='https://fnymztvxivbbvudacqmo.supabase.co',ANON='sb_publishable_uLZjzPj8m4r1LjieXpBB4w_u0WvORDs';
+let db={title:'',intro:'',sections:[],users:{},res:{},groups:{}},me=null,role=null,msg='',sheet=null,flt='all',fmin='',fmax='',cd=null,jwt=null,pin=null,busy=false;
+const $=s=>document.querySelector(s),uid=()=>Math.random().toString(36).slice(2,9);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safe=u=>/^https?:\/\//i.test(u)?u:'#';
+const code=()=>{let c;do{c=Array.from({length:5},()=>'ABCDEFGHJKMNPQRSTUVWXYZ23456789'[Math.random()*31|0]).join('')}while(db.groups[c]);return c};
+const num=s=>{const m=String(s||'').match(/\d+(?:[.,]\d+)?/);return m?parseFloat(m[0].replace(',','.')):null};
+const find=(sid,id)=>db.sections.find(s=>s.id===sid).items.find(i=>i.id===id);
+const gname=c=>(db.groups[c]&&db.groups[c].name||'Grupo')+' · '+c;
+const isMine=id=>{const r=db.res[id];return !!r&&role==='g'&&(r.by===me||(!!r.group&&db.users[me].groups.includes(r.group)))};
+const isFav=id=>role==='g'&&db.users[me].favs.includes(id);
+const img=it=>it.img?`<img src="${esc(safe(it.img))}" alt="">`:'<span class="ph">Imagen</span>';
+const svg=(p,f='none',c='var(--gold)',w=24)=>`<svg width="${w}" height="${w}" viewBox="0 0 24 24" fill="${f}" stroke="${c}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const heartP='<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>';
+const heart=(f,c='var(--red)')=>svg(heartP,f?c:'none',c,22);
+const bag=f=>svg('<path d="M6 8h12l1 12H5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',f?'var(--gold)':'none');
+const grpI=svg('<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.6 2.7-6 6-6s6 2.4 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.2c2.8 0 4.5 2 4.5 5"/>');
+const outI=svg('<path d="M10 5H5v14h5"/><path d="M14 8l4 4-4 4M18 12H9"/>');
+const secName=sid=>(db.sections.find(s=>s.id===sid)||{}).name||'';
+function loginView(){return `<div class="hd"><span class="brand">${esc(db.title)}</span></div><div class="login"><h1 class="up">Acceso</h1>
+<input id="n" placeholder="Nombre" autocomplete="off">
+<input id="p" type="password" placeholder="PIN / contraseña">
+<div class="err">${esc(msg)}</div>
+<div class="btns"><button class="pri" data-a="login">Entrar</button><div class="row"><button data-a="new">Nuevo usuario</button><button data-a="creator">Acceso restringido</button></div></div></div>`}
+function vis(){const out=[],lo=fmin===''?null:+fmin,hi=fmax===''?null:+fmax;
+ db.sections.forEach(s=>{if(flt!=='all'&&flt!=='fav'&&flt!==s.id)return;
+  s.items.forEach(it=>{
+   if(role==='g'&&db.res[it.id]&&!isMine(it.id))return;
+   if(flt==='fav'&&!isFav(it.id))return;
+   if(lo!==null||hi!==null){const p=num(it.price);if(p===null||(lo!==null&&p<lo)||(hi!==null&&p>hi))return}
+   out.push([it,s.id])})});return out}
+function card(it,sid){const m=isMine(it.id);
+ return `<div class="card" data-a="open" data-s="${sid}" data-id="${it.id}"><div class="tile${m?' mine':''}">${img(it)}${m?'<span class="pill">Reservado</span>':''}</div><div class="info"><div class="cat">${esc(secName(sid))}</div><div class="nm">${esc(it.name)}</div><div class="bot"><span class="pr">${esc(it.price||'')}</span>${role==='g'?`<span class="act"><button data-a="fav" data-id="${it.id}">${heart(isFav(it.id))}</button></span>`:''}</div></div></div>`}
+const cntTxt=n=>n+(n===1?' artículo':' artículos');
+function gridH(){const v=vis();return v.map(([i,s])=>card(i,s)).join('')+(!v.length?'<p class="intro">No hay deseos con estos filtros.</p>':'')}
+function openForm(sid,id){const it=id?find(sid,id):{name:'',price:'',desc:'',img:'',links:[]};
+ sheet={type:'form',sid,id,d:{sid,name:it.name,price:it.price||'',desc:it.desc||'',img:it.img||'',links:it.links.length?it.links.map(l=>({...l})):[{t:'',u:''}]}}}
+function readForm(){const v=s=>($(s)||{}).value||'',T=[...document.querySelectorAll('.lt')],U=[...document.querySelectorAll('.lu')];
+ return {sid:v('#f-s'),name:v('#f-n').trim(),price:v('#f-p').trim(),desc:v('#f-d').trim(),img:v('#f-i').trim(),links:T.map((t,i)=>({t:t.value.trim(),u:U[i].value.trim()}))}}
+function sheetH(){
+ if(!sheet)return '';let b='';
+ if(sheet.type==='secs')b=`<h2 style="margin-top:0">Secciones</h2>${db.sections.map(s=>`<div class="row"><input class="sn" data-id="${s.id}" value="${esc(s.name)}"><button class="sm" data-a="dels" data-s="${s.id}">${cd===s.id?'¿Borrar con sus deseos?':'Borrar'}</button></div>`).join('')}<h3>Nueva sección</h3><div class="row"><input id="ns" placeholder="Nombre"><button class="pri" data-a="adds">Añadir</button></div>`;
+ else if(sheet.type==='group'){const mine=db.users[me].groups;
+  b=`<h2 style="margin-top:0">Mis grupos</h2>${mine.length?mine.map(c=>`<div class="box"><b>${esc(gname(c))}</b><br><span class="intro">${Object.values(db.res).filter(r=>r.group===c).length} regalo(s) · comparte el código <b>${c}</b></span></div>`).join(''):'<p class="intro">Aún no estás en ningún grupo.</p>'}<h3>Unirme con un código</h3><div class="row"><input id="g" placeholder="Código"><button class="pri" data-a="joinin">Unirme</button></div><div class="err">${esc(msg)}</div>`}
+ else if(sheet.type==='pick'){const mine=db.users[me].groups;
+  b=`<h2 style="margin-top:0">Reservar en grupo</h2>${mine.length?'<p class="intro">Añádelo a un grupo existente:</p>'+mine.map(c=>`<button class="gb" data-a="togrp" data-g="${c}">${esc(gname(c))}</button>`).join(''):''}<p class="intro">O crea un grupo nuevo:</p><div class="row"><input id="gn" placeholder="Nombre del grupo (opcional)"><button class="pri" data-a="newgrp">Crear y reservar</button></div><button class="sm" data-a="back">Volver</button>`}
+ else if(sheet.type==='form'){const d=sheet.d;
+  b=`<h2 style="margin-top:0">${sheet.id?'Editar':'Nuevo'} deseo</h2><select id="f-s">${db.sections.map(s=>`<option value="${s.id}"${s.id===d.sid?' selected':''}>${esc(s.name)}</option>`).join('')}</select><input id="f-n" placeholder="Nombre" value="${esc(d.name)}"><input id="f-p" placeholder="Precio, p. ej. 45 €" value="${esc(d.price)}"><input id="f-d" maxlength="140" placeholder="Descripción corta (opcional)" value="${esc(d.desc)}"><input id="f-i" placeholder="URL de la imagen (opcional)" value="${esc(d.img)}"><p class="intro" style="margin:10px 0 0">Links</p>${d.links.map(l=>`<div class="lrow"><input class="lt" placeholder="Nombre" value="${esc(l.t)}"><input class="lu" placeholder="https://..." value="${esc(l.u)}"></div>`).join('')}<button class="sm" data-a="addlink">+ Otro link</button><div class="row" style="margin-top:12px"><button class="pri" data-a="saveit">Guardar</button><button data-a="close">Cancelar</button></div>`}
+ else{const it=find(sheet.sid,sheet.id),r=db.res[it.id],m=isMine(it.id);let acts='';
+  if(role==='c')acts=`<button data-a="edit">Editar</button> <button data-a="deli">Borrar</button>`;
+  else if(m)acts=`<div class="ok">Reservado${r.group?' en grupo · '+esc(gname(r.group)):' por ti'}</div>${r.group?'<p class="hint">Comparte el código del grupo con quienes participen.</p>':''}<button data-a="free">Liberar</button>`;
+  else acts=`<button class="pri" data-a="res">Reservar</button> <button data-a="resg">Reservar en grupo</button> <button data-a="fav" data-id="${it.id}">${isFav(it.id)?'Quitar favorito':'Favorito'}</button>`;
+  b=`<div class="big">${img(it)}</div><div class="cat">${esc(secName(sheet.sid))}</div><h2 style="margin:0">${esc(it.name)}</h2><div class="pr">${esc(it.price||'')}</div>${it.desc?`<p class="intro" style="margin-top:8px">${esc(it.desc)}</p>`:''}<div style="margin:10px 0">${it.links.map(l=>`<a class="lk" href="${esc(safe(l.u))}" target="_blank" rel="noopener">${esc(l.t||l.u)}</a>`).join('')}</div>${acts}`}
+ return `<div class="ov" data-a="bg"><div class="sheet">${b}</div></div>`}
+function mainView(){const c=role==='c',all=db.sections.flatMap(s=>s.items.map(i=>i.id));
+ const fc=c?0:db.users[me].favs.filter(x=>all.includes(x)).length;
+ const nm=flt==='all'?'Todo':flt==='fav'?'Favoritos':secName(flt)||'Todo';
+ return `<div class="hd">${c?`<input id="ttl" class="brand" placeholder="Título" value="${esc(db.title)}">`:`<span class="brand">${esc(db.title)}</span>`}
+<nav>${[['all','Todo'],...db.sections.map(s=>[s.id,s.name])].map(([k,n])=>`<button class="${flt===k?'on':''}" data-a="flt" data-id="${k}">${esc(n)}</button>`).join('')}</nav>
+<div class="icons">${c?'':`<button class="ic" data-a="grp" title="Mis grupos">${grpI}</button><button class="ic" data-a="flt" data-id="fav" title="Favoritos">${heart(flt==='fav','var(--gold)')}<span class="cnt">${fc}</span></button>`}<button class="ic" data-a="out" title="Salir">${outI}</button></div></div>
+${c?`<textarea id="intro" class="in" rows="2" placeholder="Añadir descripción...">${esc(db.intro)}</textarea>`:(db.intro?`<p class="intro">${esc(db.intro)}</p>`:'')}<h1>${esc(nm)}</h1>
+<div class="tools"><div class="price">Precio <input id="pmin" type="number" min="0" placeholder="mín" value="${esc(fmin)}"> – <input id="pmax" type="number" min="0" placeholder="máx" value="${esc(fmax)}"></div>${c?'<div class="row"><button data-a="secs">Secciones</button><button class="pri" data-a="newwish">Nuevo deseo</button></div>':''}</div>
+<div class="grid" id="grid">${gridH()}</div>${sheetH()}`}
+function render(){$('#app').innerHTML=role?mainView():loginView()}
+document.addEventListener('input',e=>{if(e.target.id==='pmin'||e.target.id==='pmax'){fmin=$('#pmin').value;fmax=$('#pmax').value;$('#grid').innerHTML=gridH()}});
+
+const ERR={auth:'Nombre o PIN incorrectos.',bad:'Escribe un nombre y un PIN de al menos 4 caracteres.',exists:'Ese nombre ya existe. Usa “Entrar”.',locked:'Demasiados intentos. Inténtalo en 15 minutos.',taken:'Alguien acaba de reservar ese artículo.',nogroup:'No perteneces a ese grupo.',badcode:'Código no válido.'};
+async function rpc(fn,body,tok){const h={'Content-Type':'application/json',apikey:ANON};if(tok)h.Authorization='Bearer '+tok;
+ const r=await fetch(API+'/rest/v1/rpc/'+fn,{method:'POST',headers:h,body:JSON.stringify(body)});if(!r.ok)throw new Error(r.status);return r.json()}
+function apply(S){db.title=S.title;db.intro=S.intro;db.sections=S.sections;db.res={};db.users={};db.groups={};
+ if(role==='g'){const g=S.groups||[];g.forEach(x=>db.groups[x.code]={name:x.name});Object.entries(S.res||{}).forEach(([i,gc])=>db.res[i]={by:me,group:gc});db.users[me]={groups:g.map(x=>x.code),favs:S.favs||[]}}}
+async function G(action,args){const S=await rpc('guest_act',{p_name:me,p_pin:pin,p_action:action,p_args:args||{}});if(!S.ok){msg=ERR[S.error]||'Error.';return false}apply(S);return true}
+async function A(action,args){const S=await rpc('admin_act',{p_action:action,p_args:args||{}},jwt);if(!S.ok){msg='Esta cuenta no es la del creador.';return false}apply(S);return true}
+document.addEventListener('change',async e=>{const t=e.target;if(role!=='c')return;try{
+ if(t.id==='ttl')await A('settings',{title:t.value,intro:db.intro});
+ else if(t.id==='intro')await A('settings',{title:db.title,intro:t.value});
+ else if(t.classList.contains('sn')&&t.value.trim()){await A('ren_section',{id:t.dataset.id,name:t.value.trim()});render()}
+}catch(err){}});
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-a]');if(!b||busy)return;
+ const a=b.dataset.a;if(a==='bg'&&e.target!==b)return;
+ const id=b.dataset.id,sid=b.dataset.s,v=s=>($(s)||{}).value||'';msg='';if(a!=='dels')cd=null;
+ const n=v('#n').trim(),p=v('#p');busy=true;
+ try{
+ if(a==='grp')sheet={type:'group'};
+ else if(a==='login'||a==='new'){
+  if(!n||!p)msg='Escribe nombre y PIN.';
+  else{me=n;pin=p;role='g';if(!await G(a)){role=me=pin=null}}}
+ else if(a==='creator'){
+  if(!n||!p)msg='Escribe tu correo en Nombre y tu contraseña.';
+  else{const r=await fetch(API+'/auth/v1/token?grant_type=password',{method:'POST',headers:{'Content-Type':'application/json',apikey:ANON},body:JSON.stringify({email:n,password:p})});
+   if(!r.ok)msg='Usuario o contraseña incorrectos.';
+   else{jwt=(await r.json()).access_token;role='c';me='creador';if(!await A('state')){role=me=jwt=null}}}}
+ else if(a==='joinin')await G('join',{code:v('#g')});
+ else if(a==='out'){role=me=jwt=pin=null;sheet=null;flt='all';db={title:db.title,intro:'',sections:[],users:{},res:{},groups:{}}}
+ else if(a==='flt')flt=id;
+ else if(a==='fav')await G('fav',{item:id});
+ else if(a==='open')sheet={type:'item',sid,id};
+ else if(a==='bg'||a==='close')sheet=null;
+ else if(a==='back')sheet={type:'item',sid:sheet.sid,id:sheet.id};
+ else if(a==='resg')sheet={type:'pick',sid:sheet.sid,id:sheet.id};
+ else if(a==='res'||a==='togrp'||a==='newgrp'){
+  if(await G(a==='togrp'?'resg':a,{item:sheet.id,group:b.dataset.g,name:v('#gn')}))sheet={type:'item',sid:sheet.sid,id:sheet.id};else{await G('login');sheet=null}}
+ else if(a==='free'){await G('free',{item:sheet.id});sheet=null}
+ else if(a==='secs')sheet={type:'secs'};
+ else if(a==='adds'){const t=v('#ns').trim();if(t)await A('add_section',{name:t})}
+ else if(a==='dels'){if(cd===sid){if(await A('del_section',{id:sid})&&flt===sid)flt='all';cd=null}else cd=sid}
+ else if(a==='newwish'){const t=db.sections.find(s=>s.id===flt)||db.sections[0];if(t)openForm(t.id,null)}
+ else if(a==='edit')openForm(sheet.sid,sheet.id);
+ else if(a==='addlink'){sheet.d=readForm();sheet.d.links.push({t:'',u:''})}
+ else if(a==='deli'){if(await A('del_item',{id:sheet.id}))sheet=null}
+ else if(a==='saveit'){const d=readForm();if(d.name&&await A('save_item',{id:sheet.id||null,section:d.sid,name:d.name,price:d.price,desc:d.desc,img:d.img,links:d.links.filter(l=>l.u).map(l=>({t:l.t||l.u,u:l.u}))}))sheet=null}
+ }catch(err){if(role==='g'&&!db.users[me]){role=me=pin=null}
+  if(String(err.message)==='401'){role=me=jwt=pin=null;sheet=null;msg='Sesión caducada. Vuelve a entrar.'}else msg='No se pudo conectar. Inténtalo de nuevo.'}
+ busy=false;render();
+ if(msg&&role&&!(sheet&&sheet.type==='group'))alert(msg)});
+rpc('site_info',{}).then(r=>{if(r&&r.title){db.title=r.title;if(!role)render()}}).catch(()=>{});
+render();
+</script></body></html>
